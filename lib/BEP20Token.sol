@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.2;
 
-import "./IBEP20.sol";
-import "./Context.sol";
-import "./Ownable.sol";
-import "./SafeMath.sol";
+import "https://github.com/iquecode/BEP20_Token/blob/main/lib/IBEP20.sol";
+import "https://github.com/iquecode/BEP20_Token/blob/main/lib/Context.sol";
+import "https://github.com/iquecode/BEP20_Token/blob/main/lib/Ownable.sol";
+import "https://github.com/iquecode/BEP20_Token/blob/main/lib/SafeMath.sol";
 
 
 contract BEP20Token is Context, IBEP20, Ownable {
