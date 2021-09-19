@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.2;
 
-import "./lib/BEP20Token.sol";
+import "https://github.com/iquecode/BEP20_Token/blob/main/lib/BEP20Token.sol";
 
 contract CustomToken is  BEP20Token {
 
