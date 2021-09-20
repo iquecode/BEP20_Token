@@ -6,7 +6,6 @@ import "https://github.com/iquecode/BEP20_Token/blob/main/lib/Context.sol";
 import "https://github.com/iquecode/BEP20_Token/blob/main/lib/Ownable.sol";
 
 contract BEP20Token is Context, IBEP20, Ownable {
-  using SafeMath for uint256;
 
   mapping (address => uint256) internal _balances;
 
