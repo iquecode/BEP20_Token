@@ -6,7 +6,7 @@ import "https://github.com/iquecode/BEP20_Token/blob/main/lib/Context.sol";
 import "https://github.com/iquecode/BEP20_Token/blob/main/lib/Ownable.sol";
 
 contract BEP20Token is Context, IBEP20, Ownable {
-
+ 
   mapping (address => uint256) internal _balances;
 
   mapping (address => mapping (address => uint256)) internal _allowances;
@@ -105,7 +105,7 @@ contract BEP20Token is Context, IBEP20, Ownable {
    * `amount`.
    */
   function transferFrom(address sender, address recipient, uint256 amount) override external returns (bool) {
-    uint256 memory balance = _allowances[sender][_msgSender()];
+    uint256 balance = _allowances[sender][_msgSender()];
     require( balance >= amount, "BEP20: transfer amount exceeds allowance");
     _transfer(sender, recipient, amount);
     _approve(sender, _msgSender(), balance-amount); 
@@ -144,7 +144,7 @@ contract BEP20Token is Context, IBEP20, Ownable {
    * `subtractedValue`.
    */
   function decreaseAllowance(address spender, uint256 subtractedValue) virtual public returns (bool) {
-    uint256 memory balance = _allowances[_msgSender()][spender];
+    uint256 balance = _allowances[_msgSender()][spender];
     require(balance >= subtractedValue, "BEP20: decreased allowance below zero"); 
     _approve(_msgSender(), spender, balance-subtractedValue);
     return true;
@@ -184,7 +184,7 @@ contract BEP20Token is Context, IBEP20, Ownable {
   function _transfer(address sender, address recipient, uint256 amount) virtual internal {
     require(sender != address(0), "BEP20: transfer from the zero address");
     require(recipient != address(0), "BEP20: transfer to the zero address");
-    uint256 memory balance = _balances[sender];
+    uint256 balance = _balances[sender];
     require(balance >= amount, "BEP20: transfer amount exceeds balance");
 
     _balances[sender] -= amount;
