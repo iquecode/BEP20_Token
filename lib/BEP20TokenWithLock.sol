@@ -10,9 +10,15 @@ import "https://github.com/iquecode/BEP20_Token/blob/main/lib/SafeMath.sol";
 contract BEP20Token is Context, IBEP20, Ownable {
   using SafeMath for uint256;
 
+  struct Lock {
+    uint256 _amoutLock;
+    uint256 _unLockTimestamp;
+  }
+  Lock[] locksArray;
   mapping (address => uint256) internal _balances;
+  mapping (address => uint256) internal _idLocksArray;
 
-  mapping (address => mapping (address => uint256)) internal _allowances;
+
 
   uint256 internal _totalSupply;
   uint8 internal _decimals;
@@ -179,6 +185,10 @@ contract BEP20Token is Context, IBEP20, Ownable {
   function _transfer(address sender, address recipient, uint256 amount) internal {
     require(sender != address(0), "BEP20: transfer from the zero address");
     require(recipient != address(0), "BEP20: transfer to the zero address");
+
+    // timesatambloqueio < agora   ou    qtdbloqueda  <=  totalNaCarteira - qtdaEnviar
+    require( _unLockTimestamp[sender] < block.timestamp || _amountLock[sender] <= _balances[sender]-amound. "BEP20: blocked for sending" );
+
 
     _balances[sender] = _balances[sender].sub(amount, "BEP20: transfer amount exceeds balance");
     _balances[recipient] = _balances[recipient].add(amount);
