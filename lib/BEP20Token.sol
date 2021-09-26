@@ -163,6 +163,24 @@ contract BEP20Token is Context, IBEP20, Ownable {
     return true;
   }
 
+
+
+
+  /**
+   * @dev Destroys `amount` tokens and assigns them to `msg.sender`, reducing
+   * the total supply.
+   *
+   * Requirements
+   *
+   * - `msg.sender` must be the token owner
+   */
+  function burn(uint256 amount) public onlyOwner returns (bool) {
+    _burn(_msgSender(), amount);
+    return true;
+  }
+
+
+
   /**
    * @dev Moves tokens `amount` from `sender` to `recipient`.
    *
@@ -177,10 +195,6 @@ contract BEP20Token is Context, IBEP20, Ownable {
    * - `recipient` cannot be the zero address.
    * - `sender` must have a balance of at least `amount`.
    */
-
-
-
-   
   function _transfer(address sender, address recipient, uint256 amount) virtual internal {
     require(sender != address(0), "BEP20: transfer from the zero address");
     require(recipient != address(0), "BEP20: transfer to the zero address");
